@@ -17,18 +17,19 @@ import {
   transformToReactEventCase,
   pickRenderProps,
   detectOutsideClick,
-  makeUniqueId
+  makeUniqueId,
+  slugify
 } from '../component-helper'
 
 beforeAll(() => {
   navigator.maxTouchPoints = 2 // mocking touch
-  defineIsTouch(true)
-  defineNavigator(true)
+  defineIsTouch()
+  defineNavigator()
 })
 
 describe('"defineIsTouch" should', () => {
-  it('add "dnb-is-touch" as an attribute to the HTML tag', () => {
-    expect(document.documentElement.getAttribute('dnb-is-touch')).toBe(
+  it('add "data-is-touch" as an attribute to the HTML tag', () => {
+    expect(document.documentElement.getAttribute('data-is-touch')).toBe(
       'true'
     )
   })
@@ -36,7 +37,7 @@ describe('"defineIsTouch" should', () => {
 
 describe('"defineNavigator" should', () => {
   it('add "os" as an attribute to the HTML tag', () => {
-    expect(document.documentElement.getAttribute('os')).toBe('other')
+    expect(document.documentElement.getAttribute('data-os')).toBe('other')
   })
 })
 
@@ -88,13 +89,6 @@ describe('"detectOutsideClick" should', () => {
     testEvent({
       mockedEvent: jest.fn(),
       event: new CustomEvent('mousedown', { bubbles: true }),
-      calledTimes: 2
-    })
-
-    // test touchstart
-    testEvent({
-      mockedEvent: jest.fn(),
-      event: new CustomEvent('touchstart', { bubbles: true }),
       calledTimes: 2
     })
   })
@@ -167,14 +161,20 @@ describe('"validateDOMAttributes" should', () => {
 
 describe('"processChildren" should', () => {
   it('return a joined string if we send in a children property with an array', () => {
-    const children = ['foo', 'bar']
+    const children = ['foo', 'bar', 123]
     const props = { children }
     const res = processChildren(props)
     expect(res).toMatch(children.join(''))
   })
   it('return a joined string if we send in a children property with as a function returning an array', () => {
-    const children = ['foo', 'bar']
+    const children = ['foo', 'bar', 123]
     const props = { children: () => children }
+    const res = processChildren(props)
+    expect(res).toMatch(children.join(''))
+  })
+  it('return a joined string, even with only one child', () => {
+    const children = ['foo']
+    const props = { children }
     const res = processChildren(props)
     expect(res).toMatch(children.join(''))
   })
@@ -358,8 +358,20 @@ describe('"makeUniqueId" should', () => {
   })
 
   it('have a prepended string', () => {
-    expect(makeUniqueId('string-', 12)).toEqual(
-      expect.stringMatching(/^string-[a-z0-9]{12}/g)
+    expect(makeUniqueId('string-', 10)).toEqual(
+      expect.stringMatching(/^string-[a-z0-9]{10}/g)
     )
+  })
+})
+
+describe('"slugify" should', () => {
+  it('have a correctly slugifyed string', () => {
+    expect(slugify('What ever !#.- 0123')).toEqual('what-ever-0123')
+  })
+  it('also if we send in only a number a correctly slugifyed string', () => {
+    expect(slugify(123)).toEqual('123')
+  })
+  it('or other types', () => {
+    expect(slugify({ foo: 'bar' })).toEqual('object-object')
   })
 })

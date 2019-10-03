@@ -45,65 +45,65 @@ export function isTouchDevice() {
   }
 }
 
-export function defineIsTouch(runInstantly = false) {
+export function defineIsTouch() {
   const handleDefineTouch = () => {
     if (typeof document === 'undefined' || typeof window === 'undefined')
       return
     try {
       if (isTouchDevice()) {
-        document.documentElement.setAttribute('dnb-is-touch', true)
+        document.documentElement.setAttribute('data-is-touch', true)
       }
     } catch (e) {
       console.warn('Could not apply "touch attribute"', e)
     }
 
-    window.removeEventListener('load', handleDefineTouch)
+    document.removeEventListener('DOMContentLoaded', handleDefineTouch)
   }
 
-  if (runInstantly) {
+  if (
+    typeof document !== 'undefined' &&
+    document.readyState === 'loading'
+  ) {
+    document.addEventListener('DOMContentLoaded', handleDefineTouch)
+  } else {
     handleDefineTouch()
-  } else if (typeof window !== 'undefined') {
-    try {
-      window.addEventListener('load', handleDefineTouch)
-    } catch (e) {
-      console.warn('Could not add "load" event listener', e)
-    }
   }
 }
 
-export function defineNavigator(runInstantly = false) {
+export function defineNavigator() {
   const handleNavigator = () => {
     if (
       typeof document === 'undefined' ||
       typeof window === 'undefined' ||
       typeof navigator === 'undefined'
-    )
+    ) {
       return
+    }
+
     try {
       if (!window.IS_TEST) {
         if (navigator.platform.match(/Mac|iPad|iPhone|iPod/) !== null) {
-          document.documentElement.setAttribute('os', 'mac')
+          document.documentElement.setAttribute('data-os', 'mac')
         } else if (navigator.platform.match('Win') !== null) {
-          document.documentElement.setAttribute('os', 'win')
+          document.documentElement.setAttribute('data-os', 'win')
         }
       } else {
-        document.documentElement.setAttribute('os', 'other')
+        document.documentElement.setAttribute('data-os', 'other')
       }
     } catch (e) {
       console.warn('Could not apply "os attribute"', e)
     }
 
-    window.removeEventListener('load', handleNavigator)
+    document.removeEventListener('DOMContentLoaded', handleNavigator)
   }
 
-  if (runInstantly) {
+  if (
+    typeof document !== 'undefined' &&
+    document.readyState === 'loading'
+  ) {
+    document.addEventListener('DOMContentLoaded', handleNavigator)
+  } else {
     handleNavigator()
-  } else if (typeof window !== 'undefined') {
-    try {
-      window.addEventListener('load', handleNavigator)
-    } catch (e) {
-      console.warn('Could not add "load" event listener', e)
-    }
   }
 }
 
@@ -191,14 +191,14 @@ export const processChildren = props => {
   // if we get several react children witch representates only a text
   if (Array.isArray(res)) {
     const onlyTexts = res.reduce((pV, cV) => {
-      if (typeof cV === 'string') {
+      if (typeof cV === 'string' || typeof cV === 'number') {
         pV.push(cV)
       }
       return pV
     }, [])
 
-    // if there was more than one text elements
-    if (onlyTexts.length > 1) {
+    // if there was one or more text elements
+    if (onlyTexts.length === res.length && onlyTexts.length > 0) {
       return onlyTexts.join('')
     }
   }
@@ -382,7 +382,6 @@ export class DetectOutsideClickClass {
         )
       }
       document.addEventListener('mousedown', this.handleClickOutside)
-      document.addEventListener('touchstart', this.handleClickOutside)
 
       this.keydownCallback = event => {
         const keyCode = keycode(event)
@@ -415,7 +414,6 @@ export class DetectOutsideClickClass {
   remove() {
     if (this.handleClickOutside && typeof document !== 'undefined') {
       document.removeEventListener('mousedown', this.handleClickOutside)
-      document.removeEventListener('touchstart', this.handleClickOutside)
       this.handleClickOutside = null
     }
     if (this.keydownCallback && typeof window !== 'undefined') {
@@ -487,3 +485,10 @@ export const makeUniqueId = (pendix = '', length = 8) =>
       .substr(2, length) + idIncrement++
   ).slice(-length)
 let idIncrement = 0
+
+export const slugify = s =>
+  String(s)
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '')

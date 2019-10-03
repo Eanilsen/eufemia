@@ -42,7 +42,7 @@ exports[`Tabs component have to match snapshot 1`] = `
         "displayName": "displayName",
         "hash": "hash",
         "selected": "selected",
-        "title": "title",
+        "title": Object {},
       },
     }
   }
@@ -249,12 +249,12 @@ exports[`Tabs scss have to match default theme snapshot 1`] = `
     text-align: left;
     padding: 0.5rem 1rem; } }
 
-:not([dnb-is-touch]) .dnb-tabs__button:hover[disabled] {
+html:not([data-is-touch]) .dnb-tabs__button:hover[disabled] {
   cursor: not-allowed; }
 
-:not([dnb-is-touch]) .dnb-tabs__button:hover:not([disabled]) {
+html:not([data-is-touch]) .dnb-tabs__button:hover:not([disabled]) {
   background-color: var(--color-mint-green-50); }
-  :not([dnb-is-touch]) .dnb-tabs__button:hover:not([disabled])::after {
+  html:not([data-is-touch]) .dnb-tabs__button:hover:not([disabled])::after {
     height: 3px;
     border-radius: 1.5px;
     background-color: var(--color-sea-green); }
@@ -364,6 +364,8 @@ exports[`Tabs scss have to match snapshot 1`] = `
   .dnb-core-style .dnb-tabs__tabs .dnb-tabs__button {
     position: relative;
     z-index: 1;
+    user-select: none;
+    -webkit-user-select: none;
     margin: 0;
     margin-left: 4.5rem;
     padding: 0.25rem 0.125rem;
@@ -405,14 +407,16 @@ exports[`Tabs scss have to match snapshot 1`] = `
     width: 100vw;
     height: 1px; }
   @media screen and (max-width: 50em) {
-    .dnb-tabs__tabs .dnb-tabs__button {
+    .dnb-tabs__tabs .dnb-tabs__button,
+    .dnb-core-style .dnb-tabs__tabs .dnb-tabs__button {
       margin-left: 2.5rem; } }
   @media screen and (max-width: 40em) {
     .dnb-tabs__tabs__tablist {
       flex-direction: column;
       flex-grow: 1;
       margin: 0; }
-    .dnb-tabs__tabs .dnb-tabs__button {
+    .dnb-tabs__tabs .dnb-tabs__button,
+    .dnb-core-style .dnb-tabs__tabs .dnb-tabs__button {
       margin-left: 0; } }
 
 .dnb-tabs__content {

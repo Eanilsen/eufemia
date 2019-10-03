@@ -142,6 +142,7 @@ export default class Button extends PureComponent {
       })
     }
   }
+
   render() {
     // consume the formRow context
     const props = this.context.formRow
@@ -214,6 +215,7 @@ export default class Button extends PureComponent {
       disabled: isTrue(disabled),
       ...attributes,
       onMouseOut: this.onMouseOutHandler, // for resetting the button to the default state
+      // onTouchStart: this.preventPageScrolling,
       onClick: this.onClickHandler
     }
 

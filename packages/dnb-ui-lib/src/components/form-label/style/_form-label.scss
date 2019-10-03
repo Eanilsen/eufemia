@@ -22,10 +22,16 @@
 
   &[for]:not([disabled]) {
     user-select: none;
+    -webkit-user-select: none; // Safari / Touch fix
     cursor: pointer;
   }
   &[disabled] {
     cursor: not-allowed;
+  }
+
+  // IE fix
+  @media screen and (-ms-high-contrast: none) {
+    max-width: 60vw;
   }
 }
 legend.dnb-form-label {
