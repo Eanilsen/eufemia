@@ -8,11 +8,11 @@ import AboutAccessibility from 'Docs/uilib/usage/accessibility/about-accessibili
 
 <Intro>
 
-# WCAG 2.1 and Universal design (UU)
+# Accessibility
 
 <AboutAccessibility />
 
-## How it not should be
+### How it not should be
 
 ---
 
