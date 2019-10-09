@@ -143,12 +143,12 @@ export const propTypes = {
 export const defaultProps = {
   id: null,
   title: null,
-  date: null,
-  start_date: null,
-  end_date: null,
-  month: null,
-  start_month: null,
-  end_month: null,
+  date: undefined,
+  start_date: undefined,
+  end_date: undefined,
+  month: undefined,
+  start_month: undefined,
+  end_month: undefined,
   mask_order: 'dd/mm/yyyy',
   mask_placeholder: 'dd/mm/åååå', // have to be same setup as "mask" - but can be like: dd/mm/åååå
   date_format: 'yyyy-MM-dd', // in v1 of date-fns we where more flexible in terms of the format
@@ -165,8 +165,8 @@ export const defaultProps = {
   cancel_button_text: 'Lukk',
   reset_date: true,
   first_day: 'monday',
-  min_date: null,
-  max_date: null,
+  min_date: undefined,
+  max_date: undefined,
   locale: nbLocale,
   range: false,
   link: false,
@@ -207,15 +207,19 @@ export default class DatePicker extends PureComponent {
 
   static getDerivedStateFromProps(props, state) {
     if (state._listenForPropChanges) {
-      let startDate = null
+      let startDate = undefined
       const date_format = props.date_format
-      if (props.date) {
+
+      if (typeof props.date !== 'undefined') {
         startDate = props.date
       }
-      if (props.start_date) {
+      if (typeof props.start_date !== 'undefined') {
         startDate = props.start_date
       }
-      if (startDate) {
+      if (
+        typeof startDate !== 'undefined' &&
+        startDate !== state.startDate
+      ) {
         state.startDate = DatePicker.convertStringToDate(startDate, {
           date_format
         })
@@ -223,17 +227,17 @@ export default class DatePicker extends PureComponent {
           state.endDate = state.startDate
         }
       }
-      if (props.end_date) {
+      if (typeof props.end_date !== 'undefined' && isTrue(props.range)) {
         state.endDate = DatePicker.convertStringToDate(props.end_date, {
           date_format
         })
       }
-      if (props.month) {
+      if (typeof props.month !== 'undefined') {
         state.month = DatePicker.convertStringToDate(props.month, {
           date_format
         })
       }
-      if (props.start_month) {
+      if (typeof props.start_month !== 'undefined') {
         state.startMonth = DatePicker.convertStringToDate(
           props.start_month,
           {
@@ -241,17 +245,17 @@ export default class DatePicker extends PureComponent {
           }
         )
       }
-      if (props.end_month) {
+      if (typeof props.end_month !== 'undefined') {
         state.endMonth = DatePicker.convertStringToDate(props.end_month, {
           date_format
         })
       }
-      if (props.min_date) {
+      if (typeof props.min_date !== 'undefined') {
         state.minDate = DatePicker.convertStringToDate(props.min_date, {
           date_format
         })
       }
-      if (props.max_date) {
+      if (typeof props.max_date !== 'undefined') {
         state.maxDate = DatePicker.convertStringToDate(props.max_date, {
           date_format
         })
@@ -265,9 +269,15 @@ export default class DatePicker extends PureComponent {
     let dateObject
     dateObject = typeof date === 'string' ? parseISO(date) : toDate(date)
 
+    // check one more time if we can generate a valid date
     if (typeof date === 'string' && date_format && !isValid(dateObject)) {
       date_format = DatePicker.correctV1Format(date_format)
       dateObject = parse(date, date_format, new Date())
+    }
+
+    // rather return null than an invalid date
+    if (!isValid(dateObject)) {
+      return null
     }
 
     return dateObject
@@ -322,7 +332,7 @@ export default class DatePicker extends PureComponent {
     }, [])
 
     if (props.end_date && !isTrue(props.range)) {
-      console.log(
+      console.warn(
         `The DatePicker got a "end_date". You have to set range={true} as well!.`
       )
     }
@@ -355,7 +365,7 @@ export default class DatePicker extends PureComponent {
             16}rem`
         }
       } catch (e) {
-        console.log(e)
+        console.warn(e)
       }
     }
   }
