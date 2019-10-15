@@ -20,6 +20,7 @@ import differenceInMonths from 'date-fns/differenceInMonths'
 import DatePickerCalendar from './DatePickerCalendar'
 
 export const propTypes = {
+  id: PropTypes.string,
   month: PropTypes.instanceOf(Date),
   startMonth: PropTypes.instanceOf(Date),
   endMonth: PropTypes.instanceOf(Date),
@@ -30,6 +31,7 @@ export const propTypes = {
   link: PropTypes.bool,
   sync: PropTypes.bool,
   onlyMonth: PropTypes.bool,
+  hideNav: PropTypes.bool,
   views: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.arrayOf(PropTypes.object)
@@ -41,6 +43,8 @@ export const propTypes = {
 }
 
 export const defaultProps = {
+  id: null,
+
   // formats
   month: null, // What month will be displayed in the first calendar
   startMonth: null, // What month will be displayed in the first calendar
@@ -53,6 +57,7 @@ export const defaultProps = {
   link: null,
   sync: null,
   onlyMonth: null,
+  hideNav: null,
   views: null,
   // views: [{ nextBtn: false }, { prevBtn: false }],
 
@@ -307,7 +312,7 @@ export default class DatePickerRange extends PureComponent {
       }
 
       // make sure we stay on the same month
-      if (this.props.onlyMonth) {
+      if (this.props.onlyMonth || this.props.hideNav) {
         if (
           !isSameMonth(state.startDate, this.state.startDate) ||
           !isSameMonth(state.endDate, this.state.startDate)
@@ -336,12 +341,14 @@ export default class DatePickerRange extends PureComponent {
 
   render() {
     const { views, startDate, endDate, hoverDate } = this.state
+    const { id, ...props } = this.props
     return (
       <div className="dnb-date-picker__views">
-        {views.map(calendar => (
+        {views.map((calendar, i) => (
           <DatePickerCalendar
             key={calendar.nr}
-            {...this.props}
+            id={`${id}-${i}-`}
+            {...props}
             {...calendar}
             startDate={startDate}
             endDate={endDate}

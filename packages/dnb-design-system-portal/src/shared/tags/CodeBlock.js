@@ -13,7 +13,7 @@ import Tag from './Tag'
 import renderers from './index'
 import Code from '../parts/uilib/Code'
 import { Button } from 'dnb-ui-lib/src/components'
-import { isIE11 } from 'dnb-ui-lib/src/shared/helpers'
+import { makeUniqueId } from 'dnb-ui-lib/src/shared/component-helper'
 
 import {
   generateElement,
@@ -184,10 +184,6 @@ class LiveCode extends PureComponent {
       hideSyntaxButton
     } = this.state
 
-    if (isIE11) {
-      return <b>Sorry, You use IE 11</b>
-    }
-
     const codeToUse =
       typeof code === 'string' ? this.prepareCode(code) : null
 
@@ -196,6 +192,7 @@ class LiveCode extends PureComponent {
     }
 
     const IS_TEST = typeof window !== 'undefined' && window.IS_TEST
+    const id = makeUniqueId()
 
     return (
       <LiveCodeEditor>
@@ -231,8 +228,11 @@ class LiveCode extends PureComponent {
               className={classnames('dnb-pre', 'dnb-live-editor')}
               ref={this._refEditor}
             >
+              <label className="dnb-sr-only" htmlFor={id}>
+                Code Editor
+              </label>
               <LiveEditor
-                aria-label="Code Editor"
+                textareaId={id}
                 ignoreTabKey
                 padding={0}
                 style={{
