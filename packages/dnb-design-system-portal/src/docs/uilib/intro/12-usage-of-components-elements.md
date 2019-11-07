@@ -1,7 +1,6 @@
 ---
 fullscreen: true
 draft: true
-order: 13
 ---
 
 <Intro>
@@ -11,7 +10,7 @@ order: 13
 Components and styles for HTML elements can be consumed differently. But for the sake of the matter of keeping the rule of **The Single Source of Truth**, use the NPM Package: [**dnb-ui-lib**](https://www.npmjs.com/package/dnb-ui-lib)
 
 - It is recommended to use ES import syntax
-- [Import styles](!/uilib/usage/customisation/consume-styles) application wide:
+- [Import styles](!/uilib/usage/customisation/styling/consume-styles) application wide:
 
 ```js
 /* In Your Application root */

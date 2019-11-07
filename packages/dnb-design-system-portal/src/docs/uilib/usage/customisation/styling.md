@@ -39,7 +39,7 @@ All the CSS packages are ready to use, **minified CSS files**. You will find the
 
 ### Individual styles
 
-Additionally, it is also possible to import a style and theme for every single component separately. You find the styles here, like: `dnb-ui-lib/components/[button]/style/dnb-button.min.css` - read more about [how to import a single-component style](/uilib/usage/customisation/consume-styles#single-component-only)
+Additionally, it is also possible to import a style and theme for every single component separately. You find the styles here, like: `dnb-ui-lib/components/[button]/style/dnb-button.min.css` - read more about [how to import a single-component style](/uilib/usage/customisation/styling/consume-styles#single-component-only)
 
 ## CSS Structure Diagram
 
@@ -67,7 +67,7 @@ import 'dnb-ui-lib/style/themes/ui'
 /* import 'dnb-ui-lib/style' */
 ```
 
-### Wrapper class {#core-style}
+### Core Style
 
 If You neither include the **dnb-ui-core** nor the **dnb-ui-body** package, then You ending up having no Eufemia styles for the Document `<body>`. To have the Eufemia Core styles inside a wrapper anyway, simply use the following helper class: `.dnb-core-style`
 
@@ -146,3 +146,7 @@ import 'dnb-ui-lib/style/elements'
   <li>Me as well</li>
 </ul>
 ```
+
+## A list of all CSS properties
+
+Beside the portal documentation with related tables and additional information, you may have a look at the [CSS file](https://unpkg.com/browse/dnb-ui-lib@latest/style/dnb-ui-properties.css), containing the custom properties (CSS variables), as well as a[ JavaScript file](https://unpkg.com/browse/dnb-ui-lib@latest/style/properties.js), witch is auto generated from the CSS data.

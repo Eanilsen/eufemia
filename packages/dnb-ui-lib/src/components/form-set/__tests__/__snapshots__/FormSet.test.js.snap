@@ -4,6 +4,8 @@ exports[`FormSet component have to match snapshot 1`] = `
 <FormSet
   class="class"
   className="className"
+  custom_element={Object {}}
+  custom_method={[Function]}
   direction="horizontal"
   disabled="disabled"
   element="form"
@@ -59,9 +61,9 @@ exports[`FormSet scss have to match snapshot 1`] = `
 .dnb-form-set {
   font-family: var(--font-family-default);
   font-weight: var(--font-weight-default);
-  font-size: 1rem;
+  font-size: var(--font-size-basis);
   font-style: normal;
-  line-height: 1.5rem;
+  line-height: var(--line-height-basis);
   color: var(--color-black-80, #333);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-variant-numeric: lining-nums;

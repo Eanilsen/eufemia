@@ -23,7 +23,7 @@ import keycode from 'keycode'
 import { validateDOMAttributes } from '../../shared/component-helper'
 import { isDisabled } from './DatePickerCalc'
 
-export const propTypes = {
+const propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
   maskOrder: PropTypes.string,
@@ -53,7 +53,7 @@ export const propTypes = {
   onFocus: PropTypes.func
 }
 
-export const defaultProps = {
+const defaultProps = {
   id: null,
   title: null,
   maskOrder: 'dd/mm/yyyy',
@@ -243,7 +243,7 @@ export default class DatePickerInput extends PureComponent {
     let date =
       isInRange === 'start' ? this.state.startDate : this.state.endDate
 
-    // do nowting if date is not set yet
+    // do nothing if date is not set yet
     if (!date) {
       return
     }
@@ -285,8 +285,8 @@ export default class DatePickerInput extends PureComponent {
       case 'up':
       case 'down':
         event.persist()
-        this.prepareCounting({ event, keyCode, target })
         event.preventDefault()
+        this.prepareCounting({ event, keyCode, target })
         return false
       case 'tab':
         return false

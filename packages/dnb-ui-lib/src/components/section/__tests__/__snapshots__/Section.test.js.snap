@@ -60,32 +60,21 @@ exports[`Section scss have to match default theme snapshot 1`] = `
   .dnb-section--signal-orange::after {
     color: var(--color-signal-orange); }
 
+.dnb-section--fire-red {
+  color: var(--color-white); }
+  .dnb-section--fire-red::after {
+    color: var(--color-fire-red); }
+  .dnb-section--fire-red .dnb-code {
+    color: var(--color-emerald-green); }
+
 .dnb-section--cherry-red {
   color: var(--color-white); }
   .dnb-section--cherry-red::after {
     color: var(--color-cherry-red); }
-  .dnb-section--cherry-red .dnb-anchor {
-    color: var(--color-white);
-    box-shadow: 0 1.5px 0 0 var(--color-white); }
-    .dnb-section--cherry-red .dnb-anchor:hover, .dnb-section--cherry-red .dnb-anchor:active {
-      color: var(--color-cherry-red);
-      background-color: var(--color-white);
-      box-shadow: none; }
-    .dnb-section--cherry-red .dnb-anchor:active {
-      color: var(--color-cherry-red);
-      background-color: var(--color-white); }
-    .dnb-section--cherry-red .dnb-anchor:not(:disabled):focus {
-      color: var(--color-white);
-      background-color: transparent;
-      outline: none; }
-      html[data-whatinput='keyboard'] .dnb-section--cherry-red .dnb-anchor:not(:disabled):focus {
-        box-shadow: 0 0 0 0.125rem var(--color-white);
-        /* IE11 fix */
-        border-color: transparent; }
   .dnb-section--cherry-red .dnb-code {
     color: var(--color-emerald-green); }
 
-.dnb-section--signal-orange ::selection, .dnb-section--cherry-red ::selection, .dnb-section--mint-green ::selection {
+.dnb-section--signal-orange ::selection, .dnb-section--fire-red ::selection, .dnb-section--cherry-red ::selection, .dnb-section--mint-green ::selection {
   background-color: var(--color-white); }
 "
 `;
@@ -114,9 +103,9 @@ exports[`Section scss have to match snapshot 1`] = `
 .dnb-section {
   font-family: var(--font-family-default);
   font-weight: var(--font-weight-default);
-  font-size: 1rem;
+  font-size: var(--font-size-basis);
   font-style: normal;
-  line-height: 1.5rem;
+  line-height: var(--line-height-basis);
   color: var(--color-black-80, #333);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-variant-numeric: lining-nums;
@@ -161,7 +150,7 @@ exports[`Section scss have to match snapshot 1`] = `
     height: 100%;
     color: var(--color-mint-green-12);
     background-color: currentColor;
-    box-shadow: 100vw 0 0 0 currentColor; }
+    box-shadow: 10px 0 0 0 currentColor, 100vw 0 0 0 currentColor; }
   .dnb-section > .dnb-section::after {
     z-index: -2; }
   .dnb-section > .dnb-section > .dnb-section::after {

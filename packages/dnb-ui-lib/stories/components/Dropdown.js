@@ -13,7 +13,8 @@ import {
   Button,
   FormLabel,
   FormSet,
-  FormRow
+  FormRow,
+  Number
   // Checkbox
 } from '../../src/components'
 
@@ -21,6 +22,12 @@ const CustomStyle = styled.div`
   [data-dnb-test='dropdown-list'] .dnb-dropdown__options {
     position: relative;
     max-width: var(--dropdown-width);
+  }
+  .dnb-dropdown__shell {
+    width: 10rem;
+  }
+  .dnb-dropdown__list {
+    min-width: 20rem;
   }
 `
 
@@ -60,10 +67,13 @@ const DropdownStory = () => {
               )
             }}
             data-attr={123}
+            icon_position="left"
           />
           <Dropdown
             title="Default option"
             label="Vertical B:"
+            align_dropdown="right"
+            icon_position="left"
             data={dropdownData}
           />
         </FormRow>
@@ -253,7 +263,7 @@ const DropdownStory = () => {
           <li className="dnb-dropdown__option dnb-dropdown__option--selected">
             <span className="dnb-dropdown__option__inner">
               <span className="dnb-dropdown__option__item">
-                1234.56.78902
+                <Number ban>12345678902</Number>
               </span>
               <span className="dnb-dropdown__option__item">
                 Sparekonto - Ole Nordmann
@@ -263,7 +273,7 @@ const DropdownStory = () => {
           <li className="dnb-dropdown__option">
             <span className="dnb-dropdown__option__inner">
               <span className="dnb-dropdown__option__item">
-                1134.56.78962
+                <Number ban>11345678962</Number>
               </span>
               <span className="dnb-dropdown__option__item">
                 Feriekonto - Kari Nordmann med et kjempelangt etternavnsen
@@ -273,7 +283,7 @@ const DropdownStory = () => {
           <li className="dnb-dropdown__option last-of-type">
             <span className="dnb-dropdown__option__inner">
               <span className="dnb-dropdown__option__item">
-                1534.96.48901
+                <Number ban>15349648901</Number>
               </span>
               <span className="dnb-dropdown__option__item">
                 Oppussing - Ole Nordmann
@@ -307,19 +317,31 @@ let dropdownData = [
     )
   },
   {
-    content: ['1234.56.78902', 'Sparekonto - Ole Nordmann']
+    content: [
+      <Number key={12345678902} ban>
+        12345678902
+      </Number>,
+      'Sparekonto - Ole Nordmann'
+    ]
   },
   {
     selected_value:
       'Feriekonto - Kari Nordmann med et kjempelangt etternavnsen',
     content: [
-      '1134.56.78962',
+      <Number key={11345678962} ban>
+        11345678962
+      </Number>,
       'Feriekonto - Kari Nordmann med et kjempelangt etternavnsen'
     ]
   },
   {
     selected_value: <>Custom selected {'🔥'}</>,
-    content: ['1534.96.48901', <>Custom content {'🔥'}</>]
+    content: [
+      <Number key={15349648901} ban>
+        15349648901
+      </Number>,
+      <>Custom content {'🔥'}</>
+    ]
   }
 ]
 const dropdownDataScrollable = [
@@ -328,15 +350,30 @@ const dropdownDataScrollable = [
     content: 'A'
   },
   {
-    content: ['1234.56.78902', 'B']
+    content: [
+      <Number key={12345678902} ban>
+        12345678902
+      </Number>,
+      'B'
+    ]
   },
   {
     selected_value: 'CC',
-    content: ['1134.56.78962', 'C']
+    content: [
+      <Number key={11345678962} ban>
+        11345678962
+      </Number>,
+      'C'
+    ]
   },
   {
     selected_value: 'DD',
-    content: ['1534.96.48901', 'D']
+    content: [
+      <Number key={15349648901} ban>
+        15349648901
+      </Number>,
+      'D'
+    ]
   },
   {
     content: <Fragment>E</Fragment>
@@ -375,7 +412,10 @@ function CurrencySelector({ currencies, onChange, value, ...props }) {
       title={strings.currencyBlankLabel}
       // eslint-disable-next-line camelcase
       on_change={({ data: { selected_value }, event }) => {
-        event.persist()
+        console.log('event', event)
+        if (event && typeof event.persist === 'function') {
+          event.persist()
+        }
         onChange(selected_value)
       }}
       data={currencies.map(currency => ({

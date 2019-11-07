@@ -32,17 +32,17 @@
   },
   "devDependencies": {
     "git-branch-is": "^3.0.0",
-    "husky": "^3.0.8"
+    "husky": "^3.0.9"
   },
   "release": {
     "analyzeCommits": "simple-commit-message"
   },
   "engines": {
-    "node": ">=10.6.0",
-    "yarn": ">=1.7.0"
+    "node": ">=10.16.3",
+    "yarn": ">=1.17.3"
   },
   "volta": {
-    "node": "10.6.0",
+    "node": "10.16.3",
     "yarn": "1.17.3"
   }
 }

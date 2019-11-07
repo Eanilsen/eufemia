@@ -4,6 +4,8 @@ exports[`FormRow component have to match snapshot 1`] = `
 <FormRow
   class="class"
   className="className"
+  custom_element={Object {}}
+  custom_method={[Function]}
   direction="horizontal"
   disabled="disabled"
   global_status_id="global_status_id"
@@ -31,7 +33,7 @@ exports[`FormRow component have to match snapshot 1`] = `
       className="dnb-form-row__fieldset"
     >
       <div
-        className="dnb-form-row dnb-form-row--horizontal dnb-form-row--horizontal-label dnb-form-row__indent--indent dnb-section dnb-section--section_style dnb-section--spacing-section_spacing className class"
+        className="dnb-form-row dnb-form-row--horizontal dnb-form-row--horizontal-label className class dnb-form-row__indent--indent dnb-section dnb-section--section_style dnb-section--spacing-section_spacing"
       >
         <FormLabel
           class={null}
@@ -113,9 +115,9 @@ exports[`FormRow scss have to match snapshot 1`] = `
 .dnb-form-label {
   font-family: var(--font-family-default);
   font-weight: var(--font-weight-default);
-  font-size: 1rem;
+  font-size: var(--font-size-basis);
   font-style: normal;
-  line-height: 1.5rem;
+  line-height: var(--line-height-basis);
   color: var(--color-black-80, #333);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-variant-numeric: lining-nums;
@@ -176,9 +178,9 @@ legend.dnb-form-label {
 .dnb-form-row {
   font-family: var(--font-family-default);
   font-weight: var(--font-weight-default);
-  font-size: 1rem;
+  font-size: var(--font-size-basis);
   font-style: normal;
-  line-height: 1.5rem;
+  line-height: var(--line-height-basis);
   color: var(--color-black-80, #333);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-variant-numeric: lining-nums;

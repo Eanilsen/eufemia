@@ -15,14 +15,14 @@ import {
   extendPropsWithContext
 } from '../../shared/component-helper'
 import { createSpacingClasses } from '../space/SpacingHelper'
-import IconPrimary from '../icon-primary/IconPrimary'
+import Icon from '../icon/Icon'
 import GlobalStatusProvider from '../global-status/GlobalStatusProvider'
 
 const renderProps = {
   render_content: null
 }
 
-export const propTypes = {
+const propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
   text: PropTypes.oneOfType([
@@ -57,12 +57,12 @@ export const propTypes = {
   render_content: PropTypes.func
 }
 
-export const defaultProps = {
+const defaultProps = {
   id: null,
   title: null,
   text: null,
   icon: 'error',
-  icon_size: 'medium',
+  icon_size: 'large',
   state: 'error',
   status: null, // Deprecated
   global_status_id: null,
@@ -104,14 +104,14 @@ export default class FormStatus extends PureComponent {
       switch (state) {
         case 'info':
         case 'information':
-          iconToLoad = 'information'
+          iconToLoad = InfoIcon
           break
         case 'error':
         default:
-          iconToLoad = 'error'
+          iconToLoad = ErrorIcon
       }
 
-      icon = <IconPrimary aria-hidden icon={iconToLoad} size={icon_size} />
+      icon = <Icon aria-hidden icon={iconToLoad} size={icon_size} />
     }
 
     return icon
@@ -306,3 +306,59 @@ export default class FormStatus extends PureComponent {
     )
   }
 }
+
+export const ErrorIcon = props => (
+  <svg
+    width="32"
+    height="32"
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M16 25a.5.5 0 100 1 .5.5 0 000-1v0"
+      stroke="#000"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M16 21V11"
+      stroke="#000"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+    <path
+      clipRule="evenodd"
+      d="M18.161 2.347a2.408 2.408 0 00-4.322 0L1.208 28.077A2.028 2.028 0 003.029 31h25.942a2.028 2.028 0 001.821-2.923l-12.63-25.73z"
+      stroke="#000"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+)
+
+export const InfoIcon = props => (
+  <svg
+    width="32"
+    height="32"
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M16 .75C24.422.75 31.25 7.578 31.25 16S24.422 31.25 16 31.25.75 24.422.75 16 7.578.75 16 .75z"
+      stroke="#000"
+      strokeWidth="1.5"
+    />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M14.904 7a1.385 1.385 0 100 2.77 1.385 1.385 0 000-2.77zM13 13.346a.75.75 0 000 1.5h1.27a.52.52 0 01.519.52v6.346A3.288 3.288 0 0018.076 25h1.27a.75.75 0 000-1.5h-1.27c-.988 0-1.789-.8-1.789-1.788v-6.347a2.02 2.02 0 00-2.019-2.019H13z"
+      fill="#000"
+    />
+  </svg>
+)

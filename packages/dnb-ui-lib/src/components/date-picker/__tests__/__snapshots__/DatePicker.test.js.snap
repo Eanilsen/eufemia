@@ -26,6 +26,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
   link={false}
   locale={
     Object {
+      "code": "nb",
       "formatDistance": [Function],
       "formatLong": Object {
         "date": [Function],
@@ -81,7 +82,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
   title={null}
 >
   <span
-    className="dnb-date-picker dnb-date-picker__status--error dnb-date-picker--hidden dnb-date-picker--show-input dnb-date-picker--show-footer"
+    className="dnb-date-picker dnb-date-picker--show-footer dnb-date-picker__status--error dnb-date-picker--hidden dnb-date-picker--show-input"
   >
     <span
       aria-hidden={true}
@@ -99,7 +100,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
         global_status_id={null}
         hidden={false}
         icon="error"
-        icon_size="medium"
+        icon_size="large"
         id="date-picker-id-form-status"
         render_content={null}
         state="error"
@@ -117,45 +118,47 @@ exports[`DatePicker component have to match snapshot 1`] = `
           <span
             className="dnb-form-status__shell"
           >
-            <IconPrimary
+            <Icon
               alt={null}
               aria-hidden={true}
               attributes={null}
+              border={null}
               class={null}
               className={null}
               color={null}
               height={null}
-              icon="error"
+              icon={[Function]}
               modifier={null}
-              size="medium"
+              size="large"
               title={null}
               width={null}
             >
               <span
-                alt="error"
+                alt="ErrorIcon"
                 aria-hidden={true}
-                className="dnb-icon dnb-icon--medium"
+                className="dnb-icon dnb-icon--large"
                 role="img"
               >
-                <error_medium>
+                <ErrorIcon>
                   <svg
                     fill="none"
-                    height={32}
+                    height="32"
                     viewBox="0 0 32 32"
-                    width={32}
+                    width="32"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
                       d="M16 25a.5.5 0 100 1 .5.5 0 000-1v0"
                       stroke="#000"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      strokeWidth={1.5}
+                      strokeWidth="1.5"
                     />
                     <path
                       d="M16 21V11"
                       stroke="#000"
                       strokeLinecap="round"
-                      strokeWidth={1.5}
+                      strokeWidth="1.5"
                     />
                     <path
                       clipRule="evenodd"
@@ -163,12 +166,12 @@ exports[`DatePicker component have to match snapshot 1`] = `
                       stroke="#000"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      strokeWidth={1.5}
+                      strokeWidth="1.5"
                     />
                   </svg>
-                </error_medium>
+                </ErrorIcon>
               </span>
-            </IconPrimary>
+            </Icon>
             <span
               className="dnb-form-status--text"
               id="date-picker-id-status"
@@ -286,7 +289,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
                       <ForwardRef
                         aria-labelledby="date-picker-id"
                         autoComplete="off"
-                        className="dnb-input__input dnb-date-picker__input dnb-date-picker__input--day"
+                        className="dnb-date-picker__input dnb-date-picker__input--day dnb-input__input"
                         id="date-picker-id-start-day"
                         key="d0"
                         mask={
@@ -309,7 +312,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
                         <t
                           aria-labelledby="date-picker-id"
                           autoComplete="off"
-                          className="dnb-input__input dnb-date-picker__input dnb-date-picker__input--day"
+                          className="dnb-date-picker__input dnb-date-picker__input--day dnb-input__input"
                           guide={true}
                           id="date-picker-id-start-day"
                           keepCharPositions={false}
@@ -335,7 +338,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
                           <input
                             aria-labelledby="date-picker-id"
                             autoComplete="off"
-                            className="dnb-input__input dnb-date-picker__input dnb-date-picker__input--day"
+                            className="dnb-date-picker__input dnb-date-picker__input--day dnb-input__input"
                             defaultValue="01"
                             id="date-picker-id-start-day"
                             name="date-picker-id__input"
@@ -359,7 +362,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
                       <ForwardRef
                         aria-labelledby="date-picker-id"
                         autoComplete="off"
-                        className="dnb-input__input dnb-date-picker__input dnb-date-picker__input--month"
+                        className="dnb-date-picker__input dnb-date-picker__input--month dnb-input__input"
                         id="date-picker-id-start-month"
                         key="m2"
                         mask={
@@ -382,7 +385,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
                         <t
                           aria-labelledby="date-picker-id"
                           autoComplete="off"
-                          className="dnb-input__input dnb-date-picker__input dnb-date-picker__input--month"
+                          className="dnb-date-picker__input dnb-date-picker__input--month dnb-input__input"
                           guide={true}
                           id="date-picker-id-start-month"
                           keepCharPositions={false}
@@ -408,7 +411,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
                           <input
                             aria-labelledby="date-picker-id"
                             autoComplete="off"
-                            className="dnb-input__input dnb-date-picker__input dnb-date-picker__input--month"
+                            className="dnb-date-picker__input dnb-date-picker__input--month dnb-input__input"
                             defaultValue="01"
                             id="date-picker-id-start-month"
                             name="date-picker-id__input"
@@ -432,7 +435,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
                       <ForwardRef
                         aria-labelledby="date-picker-id"
                         autoComplete="off"
-                        className="dnb-input__input dnb-date-picker__input dnb-date-picker__input--year"
+                        className="dnb-date-picker__input dnb-date-picker__input--year dnb-input__input"
                         id="date-picker-id-start-year"
                         key="y4"
                         mask={
@@ -457,7 +460,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
                         <t
                           aria-labelledby="date-picker-id"
                           autoComplete="off"
-                          className="dnb-input__input dnb-date-picker__input dnb-date-picker__input--year"
+                          className="dnb-date-picker__input dnb-date-picker__input--year dnb-input__input"
                           guide={true}
                           id="date-picker-id-start-year"
                           keepCharPositions={false}
@@ -485,7 +488,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
                           <input
                             aria-labelledby="date-picker-id"
                             autoComplete="off"
-                            className="dnb-input__input dnb-date-picker__input dnb-date-picker__input--year"
+                            className="dnb-date-picker__input dnb-date-picker__input--year dnb-input__input"
                             defaultValue="2019"
                             id="date-picker-id-start-year"
                             name="date-picker-id__input"
@@ -508,7 +511,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
                       <ForwardRef
                         aria-labelledby="date-picker-id"
                         autoComplete="off"
-                        className="dnb-input__input dnb-date-picker__input dnb-date-picker__input--day"
+                        className="dnb-date-picker__input dnb-date-picker__input--day dnb-input__input"
                         id="date-picker-id-end-day"
                         key="d0"
                         mask={
@@ -531,7 +534,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
                         <t
                           aria-labelledby="date-picker-id"
                           autoComplete="off"
-                          className="dnb-input__input dnb-date-picker__input dnb-date-picker__input--day"
+                          className="dnb-date-picker__input dnb-date-picker__input--day dnb-input__input"
                           guide={true}
                           id="date-picker-id-end-day"
                           keepCharPositions={false}
@@ -557,7 +560,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
                           <input
                             aria-labelledby="date-picker-id"
                             autoComplete="off"
-                            className="dnb-input__input dnb-date-picker__input dnb-date-picker__input--day"
+                            className="dnb-date-picker__input dnb-date-picker__input--day dnb-input__input"
                             defaultValue="15"
                             id="date-picker-id-end-day"
                             name="date-picker-id__input"
@@ -581,7 +584,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
                       <ForwardRef
                         aria-labelledby="date-picker-id"
                         autoComplete="off"
-                        className="dnb-input__input dnb-date-picker__input dnb-date-picker__input--month"
+                        className="dnb-date-picker__input dnb-date-picker__input--month dnb-input__input"
                         id="date-picker-id-end-month"
                         key="m2"
                         mask={
@@ -604,7 +607,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
                         <t
                           aria-labelledby="date-picker-id"
                           autoComplete="off"
-                          className="dnb-input__input dnb-date-picker__input dnb-date-picker__input--month"
+                          className="dnb-date-picker__input dnb-date-picker__input--month dnb-input__input"
                           guide={true}
                           id="date-picker-id-end-month"
                           keepCharPositions={false}
@@ -630,7 +633,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
                           <input
                             aria-labelledby="date-picker-id"
                             autoComplete="off"
-                            className="dnb-input__input dnb-date-picker__input dnb-date-picker__input--month"
+                            className="dnb-date-picker__input dnb-date-picker__input--month dnb-input__input"
                             defaultValue="02"
                             id="date-picker-id-end-month"
                             name="date-picker-id__input"
@@ -654,7 +657,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
                       <ForwardRef
                         aria-labelledby="date-picker-id"
                         autoComplete="off"
-                        className="dnb-input__input dnb-date-picker__input dnb-date-picker__input--year"
+                        className="dnb-date-picker__input dnb-date-picker__input--year dnb-input__input"
                         id="date-picker-id-end-year"
                         key="y4"
                         mask={
@@ -679,7 +682,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
                         <t
                           aria-labelledby="date-picker-id"
                           autoComplete="off"
-                          className="dnb-input__input dnb-date-picker__input dnb-date-picker__input--year"
+                          className="dnb-date-picker__input dnb-date-picker__input--year dnb-input__input"
                           guide={true}
                           id="date-picker-id-end-year"
                           keepCharPositions={false}
@@ -707,7 +710,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
                           <input
                             aria-labelledby="date-picker-id"
                             autoComplete="off"
-                            className="dnb-input__input dnb-date-picker__input dnb-date-picker__input--year"
+                            className="dnb-date-picker__input dnb-date-picker__input--year dnb-input__input"
                             defaultValue="2019"
                             id="date-picker-id-end-year"
                             name="date-picker-id__input"
@@ -773,7 +776,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
                         >
                           <button
                             aria-expanded={false}
-                            className="dnb-button dnb-button--secondary dnb-button--size-medium dnb-button--icon-position-right dnb-button--has-icon dnb-input__submit-button__button"
+                            className="dnb-button dnb-button--secondary dnb-input__submit-button__button dnb-button--icon-position-right dnb-button--has-icon dnb-button--size-medium"
                             id="date-picker-id"
                             onBlur={[Function]}
                             onClick={[Function]}
@@ -813,6 +816,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
                                 alt={null}
                                 aria-hidden={false}
                                 attributes={null}
+                                border={null}
                                 class={null}
                                 className="dnb-button__icon"
                                 color={null}
@@ -963,7 +967,7 @@ exports[`DatePicker scss have to match default theme snapshot 1`] = `
 .dnb-date-picker__input,
   .dnb-date-picker__status--error .dnb-date-picker:not(.dnb-date-picker--opened) .dnb-input__shell:not([data-input-state='focus'])
 .dnb-date-picker__input ~ .dnb-date-picker--separator {
-    color: var(--color-cherry-red); }
+    color: var(--color-fire-red); }
 "
 `;
 
@@ -1008,7 +1012,7 @@ exports[`DatePicker scss have to match snapshot 1`] = `
   display: inline-block;
   vertical-align: baseline;
   font-size: inherit;
-  line-height: 1em;
+  line-height: var(--line-height-x-small--em);
   width: 1em;
   height: 1em; }
   .dnb-icon img,
@@ -1027,23 +1031,23 @@ exports[`DatePicker scss have to match snapshot 1`] = `
   .dnb-icon svg [stroke] {
     stroke: currentColor; }
   .dnb-icon--small {
-    width: 0.75rem;
-    height: 0.75rem; }
+    width: 0.75em;
+    height: 0.75em; }
   .dnb-icon--default {
-    width: 1rem;
-    height: 1rem; }
+    width: 1em;
+    height: 1em; }
   .dnb-icon--medium {
-    width: 1.5rem;
-    height: 1.5rem; }
+    width: 1.5em;
+    height: 1.5em; }
   .dnb-icon--large {
-    width: 2rem;
-    height: 2rem; }
+    width: 2em;
+    height: 2em; }
   .dnb-icon--x-large {
-    width: 2.5rem;
-    height: 2.5rem; }
+    width: 2.5em;
+    height: 2.5em; }
   .dnb-icon--xx-large {
-    width: 3rem;
-    height: 3rem; }
+    width: 3em;
+    height: 3em; }
   .dnb-icon--custom-size {
     width: auto;
     height: auto; }
@@ -1054,9 +1058,9 @@ exports[`DatePicker scss have to match snapshot 1`] = `
 .dnb-button {
   font-family: var(--font-family-default);
   font-weight: var(--font-weight-default);
-  font-size: 1rem;
+  font-size: var(--font-size-basis);
   font-style: normal;
-  line-height: 1.5rem;
+  line-height: var(--line-height-basis);
   color: var(--color-black-80, #333);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-variant-numeric: lining-nums;
@@ -1090,7 +1094,7 @@ exports[`DatePicker scss have to match snapshot 1`] = `
 *
 */
 :root {
-  --button-font-size: var(--font-size-default);
+  --button-font-size: var(--font-size-basis);
   --button-font-size-small: var(--font-size-small);
   --button-width: 2.5rem;
   --button-height: 2.5rem;
@@ -1127,14 +1131,14 @@ exports[`DatePicker scss have to match snapshot 1`] = `
     font-size: var(--button-font-size);
     line-height: var(--button-height); }
   .dnb-button__icon {
-    line-height: 1em; }
+    line-height: var(--line-height-x-small--em); }
     .dnb-button__icon:not(.dnb-icon) svg:not([width]):not([height]) {
       width: var(--button-icon-size);
       height: var(--button-icon-size); }
     [data-os='win'] .dnb-button__icon {
       transform: translateY(-0.0625rem); }
   .dnb-button__text {
-    line-height: 1em;
+    line-height: var(--line-height-x-small--em);
     color: inherit;
     background-color: inherit; }
     [data-os='mac'] .dnb-button__text {
@@ -1264,9 +1268,9 @@ a.dnb-button .dnb-button__text {
 .dnb-form-label {
   font-family: var(--font-family-default);
   font-weight: var(--font-weight-default);
-  font-size: 1rem;
+  font-size: var(--font-size-basis);
   font-style: normal;
-  line-height: 1.5rem;
+  line-height: var(--line-height-basis);
   color: var(--color-black-80, #333);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-variant-numeric: lining-nums;
@@ -1331,9 +1335,9 @@ legend.dnb-form-label {
 .dnb-form-status {
   font-family: var(--font-family-default);
   font-weight: var(--font-weight-default);
-  font-size: 1rem;
+  font-size: var(--font-size-basis);
   font-style: normal;
-  line-height: 1.5rem;
+  line-height: var(--line-height-basis);
   color: var(--color-black-80, #333);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-variant-numeric: lining-nums;
@@ -1377,7 +1381,7 @@ legend.dnb-form-label {
     padding: calc(0.5rem / 2) 1rem;
     cursor: text;
     color: inherit;
-    line-height: 1.5rem; }
+    line-height: var(--line-height-basis); }
     [data-os='mac'] .dnb-form-status--text {
       transform: translateY(0.0625rem); }
   .dnb-icon + .dnb-form-status--text {
@@ -1391,10 +1395,7 @@ legend.dnb-form-label {
     margin-top: 0.25em;
     margin-left: 0.5em;
     color: inherit;
-    font-size: 1rem;
-    border-radius: 50%;
-    border: 0.0625rem solid;
-    border-color: currentColor; }
+    font-size: var(--font-size-basis); }
   .dnb-form-status[hidden] {
     display: none; }
   .dnb-form-status--fade-in {
@@ -1414,9 +1415,9 @@ legend.dnb-form-label {
 .dnb-input {
   font-family: var(--font-family-default);
   font-weight: var(--font-weight-default);
-  font-size: 1rem;
+  font-size: var(--font-size-basis);
   font-style: normal;
-  line-height: 1.5rem;
+  line-height: var(--line-height-basis);
   color: var(--color-black-80, #333);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-variant-numeric: lining-nums;
@@ -1450,7 +1451,7 @@ legend.dnb-form-label {
 *
 */
 :root {
-  --input-font-size: 1rem;
+  --input-font-size: var(--font-size-basis);
   --input-font-size--medium: 1.5rem;
   --input-font-size--large: 2rem;
   --input-padding: 1rem;
@@ -1513,11 +1514,15 @@ legend.dnb-form-label {
     display: none; }
   .dnb-input__input::-ms-clear {
     display: none; }
+  .dnb-input ::-webkit-file-upload-button {
+    cursor: pointer;
+    outline: none;
+    color: var(--color-sea-green); }
+    .dnb-input ::-webkit-file-upload-button:active, .dnb-input ::-webkit-file-upload-button:hover {
+      color: var(--color-emerald-green); }
   [data-os='mac'] .dnb-input__placeholder,
   [data-os='mac'] .dnb-input__input {
     transform: translateY(0.0625rem); }
-  .dnb-core-style .dnb-input__input {
-    line-height: 1em; }
   .dnb-input--has-submit-element .dnb-input__placeholder,
   .dnb-input--has-submit-element .dnb-input__input {
     padding-right: calc(var(--input-padding) * 2.5); }
@@ -1585,6 +1590,8 @@ legend.dnb-form-label {
   .dnb-input__shell[data-has-content='true'] .dnb-input__placeholder,
   .dnb-input__shell[data-has-content='true'][data-input-state='focus'] .dnb-input__placeholder {
     display: none; }
+  .dnb-core-style .dnb-input__input:not([type='file']) {
+    line-height: var(--line-height-x-small--em); }
   .dnb-input__inner > .dnb-form-status {
     order: 2;
     margin-top: 0.5rem; }
@@ -1630,9 +1637,9 @@ legend.dnb-form-label {
 .dnb-checkbox {
   font-family: var(--font-family-default);
   font-weight: var(--font-weight-default);
-  font-size: 1rem;
+  font-size: var(--font-size-basis);
   font-style: normal;
-  line-height: 1.5rem;
+  line-height: var(--line-height-basis);
   color: var(--color-black-80, #333);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-variant-numeric: lining-nums;
@@ -1774,9 +1781,9 @@ legend.dnb-form-label {
 .dnb-radio {
   font-family: var(--font-family-default);
   font-weight: var(--font-weight-default);
-  font-size: 1rem;
+  font-size: var(--font-size-basis);
   font-style: normal;
-  line-height: 1.5rem;
+  line-height: var(--line-height-basis);
   color: var(--color-black-80, #333);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-variant-numeric: lining-nums;
@@ -1942,9 +1949,9 @@ legend.dnb-form-label {
 .dnb-toggle-button {
   font-family: var(--font-family-default);
   font-weight: var(--font-weight-default);
-  font-size: 1rem;
+  font-size: var(--font-size-basis);
   font-style: normal;
-  line-height: 1.5rem;
+  line-height: var(--line-height-basis);
   color: var(--color-black-80, #333);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-variant-numeric: lining-nums;
@@ -2096,9 +2103,9 @@ legend.dnb-form-label {
 .dnb-dropdown {
   font-family: var(--font-family-default);
   font-weight: var(--font-weight-default);
-  font-size: 1rem;
+  font-size: var(--font-size-basis);
   font-style: normal;
-  line-height: 1.5rem;
+  line-height: var(--line-height-basis);
   color: var(--color-black-80, #333);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-variant-numeric: lining-nums;
@@ -2136,18 +2143,6 @@ legend.dnb-form-label {
   --date-picker-day-width: 2rem;
   --date-picker-day-horizontal-spacing: 4px; }
 
-@keyframes datePickerSlideDown {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
-
-@keyframes datePickerSlideUp {
-  from {
-    opacity: 1; }
-  to {
-    opacity: 0; } }
-
 .dnb-date-picker {
   display: inline-flex;
   align-items: center; }
@@ -2181,15 +2176,15 @@ legend.dnb-form-label {
   .dnb-date-picker--opened .dnb-date-picker__container {
     z-index: 100; }
     .dnb-date-picker--opened .dnb-date-picker__container {
-      animation: datePickerSlideDown 200ms ease-out 1 forwards; }
+      animation: date-picker-slide-down 200ms ease-out 1 forwards; }
     .dnb-date-picker--opened .dnb-date-picker__container--no-animation {
-      animation: datePickerSlideDown 1ms ease-out 1 forwards; }
+      animation: date-picker-slide-down 1ms ease-out 1 forwards; }
   .dnb-date-picker--hidden .dnb-date-picker__container {
     display: none; }
   .dnb-date-picker:not(.dnb-date-picker--opened) .dnb-date-picker__container {
-    animation: datePickerSlideUp 150ms ease-out 1 forwards; }
+    animation: date-picker-slide-up 150ms ease-out 1 forwards; }
   .dnb-date-picker:not(.dnb-date-picker--opened) .dnb-date-picker__container--no-animation {
-    animation: datePickerSlideUp 1ms ease-out 1 forwards; }
+    animation: date-picker-slide-up 1ms ease-out 1 forwards; }
   .dnb-date-picker__input,
   .dnb-date-picker .dnb-input__input.dnb-date-picker__input,
   .dnb-core-style .dnb-date-picker__input {
@@ -2292,12 +2287,14 @@ legend.dnb-form-label {
     margin: 0;
     padding: 0;
     list-style: none; }
-  .dnb-date-picker table.dnb-no-focus:focus {
-    outline: none; }
-    html[data-whatinput='keyboard'] .dnb-date-picker table.dnb-no-focus:focus {
-      box-shadow: 0 0 0 0.125rem var(--color-emerald-green);
-      /* IE11 fix */
-      border-color: transparent; }
+  .dnb-date-picker table {
+    margin: 0; }
+    .dnb-date-picker table.dnb-no-focus:focus {
+      outline: none; }
+      html[data-whatinput='keyboard'] .dnb-date-picker table.dnb-no-focus:focus {
+        box-shadow: 0 0 0 0.125rem var(--color-emerald-green);
+        /* IE11 fix */
+        border-color: transparent; }
   .dnb-date-picker__day, .dnb-date-picker__labels__day {
     display: flex;
     flex-basis: 14.28571%;
@@ -2407,5 +2404,17 @@ legend.dnb-form-label {
         width: 100%; }
       .dnb-date-picker__header::after {
         left: 0; } }
+
+@keyframes date-picker-slide-down {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes date-picker-slide-up {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
 "
 `;

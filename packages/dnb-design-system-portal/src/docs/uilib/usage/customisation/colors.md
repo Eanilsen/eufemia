@@ -11,20 +11,20 @@ import ColorsTable from 'Pages/quickguide-designer/colors-table.md'
 
 All Colors are provided by CSS Custom Properties.
 
+You may have a look at the QuickStart for Designers [About Colors](/quickguide-designer/colors).
+
 ## Polyfill
 
-Make sure you have also a PostCSS plugin like [postcss-preset-env](https://github.com/csstools/postcss-preset-env) to polyfill support legacy browsers. For Styled Components (CSS-in-JS) use [css-vars-ponyfill](https://github.com/jhildenbiddle/css-vars-ponyfill).
-
-You may have a look at the QuickStart for Designers [About Colors](/quickguide-designer/colors).
+Read more about why and how to [use a polyfill](/uilib/usage/customisation/styling/polyfill).
 
 ## Example usage
 
 <ComponentBox hideCode useRender>
 {`
-const P = styled.p\`
-  color: var(--color-cherry-red);
+const Paragraph = styled(P)\`
+  color: var(--color-sky-blue);
 \`
-render(<P>I'm Cherry Red.</P>)
+render(<Paragraph>I'm Sky blue.</Paragraph>)
 `}
 </ComponentBox>
 

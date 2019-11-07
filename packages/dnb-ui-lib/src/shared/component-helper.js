@@ -8,6 +8,9 @@ export { registerElement }
 import keycode from 'keycode'
 import whatInput from 'what-input'
 
+export const PLATFORM_MAC = 'Mac|iPad|iPhone|iPod'
+export const PLATFORM_WIN = 'Win'
+
 if (
   typeof process !== 'undefined' &&
   process.env.NODE_ENV === 'test' &&
@@ -94,9 +97,11 @@ export function defineNavigator() {
 
     try {
       if (!window.IS_TEST) {
-        if (navigator.platform.match(/Mac|iPad|iPhone|iPod/) !== null) {
+        if (navigator.platform.match(new RegExp(PLATFORM_MAC)) !== null) {
           document.documentElement.setAttribute('data-os', 'mac')
-        } else if (navigator.platform.match('Win') !== null) {
+        } else if (
+          navigator.platform.match(new RegExp(PLATFORM_WIN)) !== null
+        ) {
           document.documentElement.setAttribute('data-os', 'win')
         }
       } else {
@@ -247,13 +252,20 @@ export const extend = (...objects) => {
 
 // extends props from a given context
 // but give the context second priority only
-export const extendPropsWithContext = (props, context) =>
+export const extendPropsWithContext = (
+  props,
+  context
+  // ,{ acceptTrue = false } = {}
+) =>
   extend(
     false, // prevent recursion
     Object.entries(context).reduce((acc, [key, value]) => {
       if (typeof props[key] !== 'undefined' && value !== null) {
         acc[key] = value
       }
+      // if (acceptTrue && value !== true) {
+      //   acc[key] = value
+      // }
       return acc
     }, {}),
     props
@@ -525,3 +537,16 @@ export const slugify = s =>
     .replace(/[^\w\s-]/g, '')
     .replace(/[\s_-]+/g, '-')
     .replace(/^-+|-+$/g, '')
+
+// NB: in future we can use String.matchAll() instead
+export const matchAll = (string, regex) => {
+  if (typeof string.matchAll === 'function') {
+    return string.matchAll(regex)
+  }
+  const matches = []
+  let match
+  while ((match = regex.exec(string))) {
+    matches.push(match)
+  }
+  return matches
+}

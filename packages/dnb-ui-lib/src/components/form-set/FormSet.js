@@ -23,7 +23,7 @@ const renderProps = {
   render_content: null
 }
 
-export const propTypes = {
+const propTypes = {
   id: PropTypes.string,
   element: PropTypes.string,
   no_form: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
@@ -40,10 +40,12 @@ export const propTypes = {
   ]),
 
   // Web Component props
+  custom_element: PropTypes.object,
+  custom_method: PropTypes.func,
   render_content: PropTypes.func
 }
 
-export const defaultProps = {
+const defaultProps = {
   id: null,
   element: 'form',
   no_form: false,
@@ -56,6 +58,8 @@ export const defaultProps = {
   children: null,
 
   // Web Component props
+  custom_element: null,
+  custom_method: null,
   ...renderProps
 }
 

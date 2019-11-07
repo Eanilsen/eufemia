@@ -15,7 +15,7 @@ import DescriptionList from '../description-list/DescriptionList'
 
 const renderProps = {}
 
-export const propTypes = {
+const propTypes = {
   title: PropTypes.string,
   text: PropTypes.string,
   descriptionListData: PropTypes.oneOfType([
@@ -34,7 +34,7 @@ export const propTypes = {
   // Web Component props
 }
 
-export const defaultProps = {
+const defaultProps = {
   title: null,
   text: null,
   descriptionListData: null,
@@ -83,7 +83,7 @@ export default class FormSummary extends PureComponent {
                   <h2 className="dnb-form-summary__title typo-light">
                     {title}
                   </h2>
-                  <p className="dnb-form-summary__info dnb-typo-book">
+                  <p className="dnb-form-summary__info dnb-typo-regular">
                     {text}
                   </p>
                 </div>

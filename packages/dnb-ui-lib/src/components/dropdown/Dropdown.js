@@ -34,7 +34,7 @@ const renderProps = {
   trigger_component: null
 }
 
-export const propTypes = {
+const propTypes = {
   id: PropTypes.string,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   icon: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
@@ -115,7 +115,7 @@ export const propTypes = {
   on_state_update: PropTypes.func
 }
 
-export const defaultProps = {
+const defaultProps = {
   id: null,
   title: 'Option Menu',
   icon: null,
@@ -310,6 +310,7 @@ export default class Dropdown extends PureComponent {
     this._ref = React.createRef()
     this._refUl = React.createRef()
     this._refButton = React.createRef()
+    this._refTriangle = React.createRef()
   }
 
   componentDidMount() {
@@ -322,6 +323,40 @@ export default class Dropdown extends PureComponent {
     this.setHidden()
     clearTimeout(this._hideTimeout)
     clearTimeout(this._selectTimeout)
+  }
+
+  setTrianglePosition = () => {
+    // do not change the triangle on popup mode
+    if (
+      isTrue(this.props.prevent_selection) ||
+      isTrue(this.props.more_menu)
+    ) {
+      return
+    }
+
+    try {
+      const width = this._ref.current.offsetWidth
+      if (parseFloat(width) > 0) {
+        const { icon_position, align_dropdown } = this.props
+        switch (align_dropdown) {
+          case 'left':
+          default:
+            if (icon_position !== 'left') {
+              this._refTriangle.current.style.left = `${width / 16 - 3}rem` // -3rem
+            }
+            break
+          case 'right':
+            if (icon_position === 'left') {
+              this._refTriangle.current.style.left = 'auto'
+              this._refTriangle.current.style.right = `${width / 16 -
+                3}rem` // -3rem
+            }
+            break
+        }
+      }
+    } catch (e) {
+      console.warn(e)
+    }
   }
 
   setOutsideClickObserver = () => {
@@ -363,6 +398,7 @@ export default class Dropdown extends PureComponent {
           1e3
         ) // wait until animation is over
 
+        this.setTrianglePosition()
         this.setDirectionObserver()
         this.setScrollObserver()
         this.setOutsideClickObserver()
@@ -372,10 +408,9 @@ export default class Dropdown extends PureComponent {
         })
       }
     )
-    const attributes = this.attributes || {}
     dispatchCustomElementEvent(this, 'on_show', {
       data: Dropdown.getOptionData(selected_item, this.state.data),
-      attributes
+      attributes: this.attributes || {}
     })
   }
   setHidden = ({ setFocus = false } = {}) => {
@@ -475,6 +510,12 @@ export default class Dropdown extends PureComponent {
     { fireSelectEvent = false, scrollTo = true, event = null } = {}
   ) {
     if (!(active_item > -1)) {
+      try {
+        const ulElement = this._refUl.current
+        ulElement.focus()
+      } catch (e) {
+        console.warn(e)
+      }
       return
     }
     this.setState(
@@ -499,7 +540,7 @@ export default class Dropdown extends PureComponent {
           }
         }
 
-        if (!(selected_item > -1)) {
+        if (!(active_item > -1)) {
           return
         }
 
@@ -671,7 +712,7 @@ export default class Dropdown extends PureComponent {
   ) => {
     // because of our delay on despatching the event
     // make a copy of it, so we don't break the syntetic event
-    if (event && event.persist) {
+    if (event && typeof event.persist === 'function') {
       event.persist()
     }
 
@@ -955,9 +996,10 @@ export default class Dropdown extends PureComponent {
       onMouseDown: this.onMouseDownHandler,
       onKeyDown: this.onTriggerKeyDownHandler
     }
-    if (typeof title === 'string') {
-      triggerParams['title'] = title
-    }
+    // freaks out NVDA
+    // if (typeof title === 'string') {
+    //   triggerParams['title'] = title
+    // }
     if (hidden && label) {
       triggerParams['aria-labelledby'] = id + '-label'
     }
@@ -983,6 +1025,8 @@ export default class Dropdown extends PureComponent {
       selected_item > -1
     ) {
       ulParams['aria-activedescendant'] = `option-${id}-${selected_item}`
+    } else {
+      ulParams.tabIndex = '-1'
     }
 
     // also used for code markup simulation
@@ -1108,7 +1152,11 @@ export default class Dropdown extends PureComponent {
                         </li>
                       )
                     })}
-                    <li className="dnb-dropdown__triangle" aria-hidden />
+                    <li
+                      className="dnb-dropdown__triangle"
+                      aria-hidden
+                      ref={this._refTriangle}
+                    />
                   </ul>
                 ) : (
                   children && (

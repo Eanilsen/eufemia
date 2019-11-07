@@ -12,13 +12,13 @@ import { hamburger as hamburgerIcon } from 'dnb-ui-lib/src/icons/secondary_icons
 
 Every [Component](/uilib/components) has its own `properties` to make them work for a variety of cases. You may have a look at the table describing all the possibilities. Check out for example the [Button Properties](/uilib/components/button#info).
 
-Below are some examples. You can even modify them right away in the Browser.
-
 ## Naming
 
 Both the properties- and event names are using **snake case** to support a universal [naming convention](/uilib/development/naming), with a background and requirement on supporting [Web Components](/uilib/usage/first-steps/web-components).
 
 ## Large Buttons & Icons
+
+Below are some examples. You can even modify them right away in the Browser.
 
 <ComponentBox>
 {`
@@ -84,12 +84,10 @@ So, if you come over some special use cases, please contribute back and make a p
 const Component = () => {
   const time = new Date().toLocaleTimeString()
   return (
-    <>
-      <dnb-form-label for_id="form-input">
-        Web Component property updates
-      </dnb-form-label>
-      <dnb-input id="form-input" value={time} />
-    </>
+    <dnb-input
+      label="Web Component property updates:"
+      value={time}
+    ></dnb-input>
   )
 }
 const RenderHelper = () => {

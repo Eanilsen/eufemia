@@ -4,7 +4,7 @@
 */
 
 :root {
-  --input-font-size: 1rem;
+  --input-font-size: var(--font-size-basis);
   --input-font-size--medium: 1.5rem;
   --input-font-size--large: 2rem;
   --input-padding: 1rem;
@@ -99,15 +99,21 @@
     display: none;
   }
 
+  // change file type apperance on type="file"
+  ::-webkit-file-upload-button {
+    cursor: pointer;
+    outline: none;
+    color: var(--color-sea-green);
+    &:active,
+    &:hover {
+      color: var(--color-emerald-green);
+    }
+  }
+
   // vertical alignment
   [data-os='mac'] &__placeholder,
   [data-os='mac'] &__input {
     transform: translateY(0.0625rem);
-  }
-
-  // to make Safari selection not appear all to the top
-  .dnb-core-style &__input {
-    line-height: 1em;
   }
 
   &--has-submit-element &__placeholder,
@@ -214,6 +220,11 @@
   &__shell[data-has-content='true'][data-input-state='focus']
     .dnb-input__placeholder {
     display: none;
+  }
+
+  // to make Safari selection not appear all to the top
+  .dnb-core-style &__input:not([type='file']) {
+    line-height: var(--line-height-x-small--em);
   }
 
   // no special style for search

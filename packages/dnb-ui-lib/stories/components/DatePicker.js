@@ -134,21 +134,21 @@ export default [
               console.log(
                 'on_show',
                 // props,
-                props.event.currentTarget.dataset
+                props.event
               )
             }}
             on_hide={props => {
               console.log(
                 'on_hide',
                 // props,
-                props.event.currentTarget.dataset
+                props.event
               )
             }}
             on_change={props => {
               console.log(
                 'on_change',
                 // props,
-                props.event.currentTarget.dataset
+                props.event
               )
             }}
           />
@@ -287,7 +287,7 @@ export default [
 const CustomDate = () => {
   // const [startDate, setStartDate] = React.useState('2019-02-15')
   // const [endDate, setEndDate] = React.useState('2019-03-15')
-  const [startDate, setStartDate] = React.useState(null)
+  const [startDate, setStartDate] = React.useState('2019-10-02')
   const [endDate, setEndDate] = React.useState(null)
   const [errorStatus, setErrorStatus] = React.useState(false)
 
@@ -306,13 +306,16 @@ const CustomDate = () => {
       {/* <H2>{count}</H2> */}
       <DatePicker
         right
-        // range
-        label="Default DatePicker:"
+        range
+        min_date="2019-09-28"
+        max_date="2019-10-17"
+        date={startDate}
+        label="Min max DatePicker:"
         show_input
         start_date={startDate}
         end_date={endDate}
-        on_change={({ date, start_date, end_date }) => {
-          console.log('on_change', date, start_date, end_date)
+        on_change={({ date, start_date, end_date, ...rest }) => {
+          console.log('on_change', date, start_date, end_date, rest)
           setStartDate(start_date)
           setEndDate(end_date)
         }}
