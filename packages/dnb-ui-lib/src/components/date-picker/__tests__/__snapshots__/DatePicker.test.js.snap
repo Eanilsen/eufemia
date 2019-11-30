@@ -62,16 +62,19 @@ exports[`DatePicker component have to match snapshot 1`] = `
   on_cancel={null}
   on_change={null}
   on_hide={null}
+  on_reset={null}
   on_show={null}
   on_submit={null}
   only_month={false}
   opened={false}
   range={true}
+  reset_button_text="Tilbakestill"
   reset_date={true}
   return_format="yyyy-MM-dd"
   shortcuts={null}
   show_cancel_button={null}
   show_input={true}
+  show_reset_button={null}
   show_submit_button={null}
   start_date="2019-01-01T00:00:00.000Z"
   status="status"
@@ -226,6 +229,7 @@ exports[`DatePicker component have to match snapshot 1`] = `
             input_attributes={null}
             input_class={null}
             input_state="virgin"
+            keep_placeholder={null}
             label={null}
             label_direction={null}
             on_blur={null}
@@ -1236,6 +1240,10 @@ exports[`DatePicker scss have to match snapshot 1`] = `
       box-shadow: none;
       color: inherit;
       border: none; }
+  .dnb-button[type='button'], .dnb-button[type='reset'], .dnb-button[type='submit'] {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none; }
   .dnb-button[disabled] {
     cursor: not-allowed; }
   .dnb-form-row--vertical .dnb-form-row__content > .dnb-button {
@@ -1249,11 +1257,6 @@ exports[`DatePicker scss have to match snapshot 1`] = `
 /* Firefox includes a hidden border which messes up button dimensions */
 button.dnb-button::-moz-focus-inner {
   border: none; }
-
-a.dnb-button[type='button'] {
-  appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none; }
 
 a.dnb-button .dnb-button__icon {
   transform: translateY(0); }
@@ -1482,7 +1485,9 @@ legend.dnb-form-label {
   .dnb-input__input {
     border: none;
     outline: none;
-    word-break: normal; }
+    word-break: normal;
+    position: relative;
+    z-index: 2; }
   .dnb-input__input[disabled] {
     user-select: none;
     -webkit-user-select: none;
@@ -1587,9 +1592,6 @@ legend.dnb-form-label {
   .dnb-input__align--right .dnb-input__placeholder,
   .dnb-input__align--right .dnb-input__input {
     text-align: right; }
-  .dnb-input__shell[data-has-content='true'] .dnb-input__placeholder,
-  .dnb-input__shell[data-has-content='true'][data-input-state='focus'] .dnb-input__placeholder {
-    display: none; }
   .dnb-core-style .dnb-input__input:not([type='file']) {
     line-height: var(--line-height-x-small--em); }
   .dnb-input__inner > .dnb-form-status {

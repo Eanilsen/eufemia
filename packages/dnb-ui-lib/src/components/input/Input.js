@@ -17,7 +17,8 @@ import {
   validateDOMAttributes,
   processChildren,
   pickRenderProps,
-  dispatchCustomElementEvent
+  dispatchCustomElementEvent,
+  isMac
 } from '../../shared/component-helper'
 import { createSpacingClasses } from '../space/SpacingHelper'
 
@@ -56,6 +57,10 @@ const propTypes = {
   autocomplete: PropTypes.oneOf(['on', 'off']),
   submit_button_title: PropTypes.string,
   placeholder: PropTypes.string,
+  keep_placeholder: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool
+  ]),
   description: PropTypes.string, // deprecated
   suffix: PropTypes.oneOfType([
     PropTypes.string,
@@ -118,6 +123,7 @@ const defaultProps = {
   global_status_id: null,
   autocomplete: 'off',
   placeholder: null,
+  keep_placeholder: null,
   description: null, // deprecated
   suffix: null,
   align: null,
@@ -215,6 +221,8 @@ export default class Input extends PureComponent {
     // make sure we dont trigger getDerivedStateFromProps on startup
     this.state._listenForPropChanges = true
     this.state._value = props.value
+
+    this.isMac = isMac()
   }
   onFocusHandler = event => {
     const { value } = event.target
@@ -275,6 +283,7 @@ export default class Input extends PureComponent {
       global_status_id,
       disabled,
       placeholder,
+      keep_placeholder,
       description, // deprecated
       suffix,
       align,
@@ -322,6 +331,7 @@ export default class Input extends PureComponent {
         status && `dnb-input__status--${status_state}`,
         label_direction && `dnb-input--${label_direction}`,
         isTrue(stretch) && `dnb-input--stretch`,
+        isTrue(keep_placeholder) && `dnb-input--keep-placeholder`,
         createSpacingClasses(props),
         _className,
         className
@@ -377,6 +387,9 @@ export default class Input extends PureComponent {
     if (readOnly) {
       inputParams['aria-readonly'] = inputParams.readOnly = true
     }
+    if (!hasValue && placeholder && this.state.focusState !== 'focus') {
+      inputParams['aria-labelledby'] = id + '-placeholder'
+    }
 
     const shellParams = {
       'data-input-state': inputState,
@@ -422,19 +435,22 @@ export default class Input extends PureComponent {
 
           <span className="dnb-input__row">
             <span className="dnb-input__shell" {...shellParams}>
-              {InputElement || <input ref={this._ref} {...inputParams} />}
+              {!hasValue &&
+                placeholder &&
+                this.state.focusState !== 'focus' && (
+                  <span
+                    id={id + '-placeholder'}
+                    aria-hidden={this.isMac}
+                    className={classnames(
+                      'dnb-input__placeholder',
+                      align ? `dnb-input__align--${align}` : null
+                    )}
+                  >
+                    {placeholder}
+                  </span>
+                )}
 
-              {placeholder && (
-                <span
-                  aria-hidden
-                  className={classnames(
-                    'dnb-input__placeholder',
-                    align ? `dnb-input__align--${align}` : null
-                  )}
-                >
-                  {placeholder}
-                </span>
-              )}
+              {InputElement || <input ref={this._ref} {...inputParams} />}
             </span>
 
             {hasSubmitButton && (

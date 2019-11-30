@@ -26,6 +26,7 @@ exports[`Modal component have to match snapshot 1`] = `
         "open_state": "'opened'",
         "preventSetTriggerRef": true,
         "prevent_close": "prevent_close",
+        "prevent_core_style": "prevent_core_style",
         "title": "title",
         "trigger_class": "trigger_class",
         "trigger_disabled": "trigger_disabled",
@@ -64,6 +65,7 @@ exports[`Modal component have to match snapshot 1`] = `
         "min_width": "min_width",
         "modal_content": "modal_content",
         "prevent_close": "prevent_close",
+        "prevent_core_style": "prevent_core_style",
         "title": "title",
       },
     }
@@ -97,6 +99,7 @@ exports[`Modal component have to match snapshot 1`] = `
   open_state={null}
   preventSetTriggerRef={true}
   prevent_close={false}
+  prevent_core_style={false}
   title="modal_title"
   trigger_class={null}
   trigger_disabled={null}
@@ -191,16 +194,12 @@ exports[`Modal component have to match snapshot 1`] = `
                   viewBox="0 0 16 16"
                   width={16}
                 >
-                  <g
-                    clipPath="url(#clip-5494af)"
-                  >
-                    <path
-                      clipRule="evenodd"
-                      d="M4.352 5.1c0-2.05 1.55-3.6 3.6-3.6 2.052 0 3.601 1.55 3.601 3.6 0 2.051-1.55 3.6-3.6 3.6a.75.75 0 00-.75.75v2.666a.75.75 0 001.5 0V10.15c2.506-.348 4.35-2.425 4.35-5.049 0-2.879-2.22-5.1-5.1-5.1-2.88 0-5.1 2.221-5.1 5.1a.75.75 0 001.5 0zm3.6 10.898c.659 0 1.098-.439 1.098-1.097 0-.658-.44-1.097-1.097-1.097-.658 0-1.097.44-1.097 1.097 0 .658.439 1.097 1.097 1.097z"
-                      fill="#000"
-                      fillRule="evenodd"
-                    />
-                  </g>
+                  <path
+                    clipRule="evenodd"
+                    d="M4.352 5.1c0-2.05 1.55-3.6 3.6-3.6 2.052 0 3.601 1.55 3.601 3.6 0 2.051-1.55 3.6-3.6 3.6a.75.75 0 00-.75.75v2.666a.75.75 0 001.5 0V10.15c2.506-.348 4.35-2.425 4.35-5.049 0-2.879-2.22-5.1-5.1-5.1-2.88 0-5.1 2.221-5.1 5.1a.75.75 0 001.5 0zm3.6 10.898c.659 0 1.098-.439 1.098-1.097 0-.658-.44-1.097-1.097-1.097-.658 0-1.097.44-1.097 1.097 0 .658.439 1.097 1.097 1.097z"
+                    fill="#000"
+                    fillRule="evenodd"
+                  />
                 </svg>
               </question>
             </span>
@@ -233,6 +232,7 @@ exports[`Modal component have to match snapshot 1`] = `
             "open_state": "'opened'",
             "preventSetTriggerRef": true,
             "prevent_close": "prevent_close",
+            "prevent_core_style": "prevent_core_style",
             "title": "title",
             "trigger_class": "trigger_class",
             "trigger_disabled": "trigger_disabled",
@@ -271,6 +271,7 @@ exports[`Modal component have to match snapshot 1`] = `
             "min_width": "min_width",
             "modal_content": "modal_content",
             "prevent_close": "prevent_close",
+            "prevent_core_style": "prevent_core_style",
             "title": "title",
           },
         }
@@ -301,6 +302,7 @@ exports[`Modal component have to match snapshot 1`] = `
       on_open={null}
       open_modal={null}
       prevent_close={false}
+      prevent_core_style={false}
       title="modal_title"
       toggleOpenClose={[Function]}
     >
@@ -329,6 +331,7 @@ exports[`Modal component have to match snapshot 1`] = `
               "open_state": "'opened'",
               "preventSetTriggerRef": true,
               "prevent_close": "prevent_close",
+              "prevent_core_style": "prevent_core_style",
               "title": "title",
               "trigger_class": "trigger_class",
               "trigger_disabled": "trigger_disabled",
@@ -367,6 +370,7 @@ exports[`Modal component have to match snapshot 1`] = `
               "min_width": "min_width",
               "modal_content": "modal_content",
               "prevent_close": "prevent_close",
+              "prevent_core_style": "prevent_core_style",
               "title": "title",
             },
           }
@@ -398,6 +402,7 @@ exports[`Modal component have to match snapshot 1`] = `
         on_open={null}
         open_modal={null}
         prevent_close={false}
+        prevent_core_style={false}
         title="modal_title"
         toggleOpenClose={[Function]}
       >
@@ -410,7 +415,7 @@ exports[`Modal component have to match snapshot 1`] = `
           role="dialog"
         >
           <div
-            className="dnb-modal__content__inner dnb-no-focus"
+            className="dnb-modal__content__inner dnb-no-focus dnb-core-style"
             id="modal_content_id"
             onClick={[Function]}
             onKeyDown={[Function]}
@@ -802,6 +807,10 @@ exports[`Modal scss have to match snapshot 1`] = `
       box-shadow: none;
       color: inherit;
       border: none; }
+  .dnb-button[type='button'], .dnb-button[type='reset'], .dnb-button[type='submit'] {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none; }
   .dnb-button[disabled] {
     cursor: not-allowed; }
   .dnb-form-row--vertical .dnb-form-row__content > .dnb-button {
@@ -815,11 +824,6 @@ exports[`Modal scss have to match snapshot 1`] = `
 /* Firefox includes a hidden border which messes up button dimensions */
 button.dnb-button::-moz-focus-inner {
   border: none; }
-
-a.dnb-button[type='button'] {
-  appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none; }
 
 a.dnb-button .dnb-button__icon {
   transform: translateY(0); }
@@ -930,7 +934,7 @@ a.dnb-button .dnb-button__text {
       max-width: 100%;
       max-height: 100%; }
   .dnb-modal__title.dnb-h2,
-  .dnb-core-style .dnb-modal__title.dnb-h2 {
+  .dnb-core-style .dnb-modal__title.dnb-h2:not([class*='dnb-space']) {
     margin: 0;
     padding: 0 2rem 0 0; }
   .dnb-modal__wrapper {
@@ -948,7 +952,7 @@ a.dnb-button .dnb-button__text {
     position: absolute;
     top: var(--modal-spacing);
     right: var(--modal-spacing);
-    z-index: calc(var(--modal-z-index) + 2); }
+    z-index: 1; }
     @media screen and (max-width: 50em) {
       .dnb-modal__close-button {
         top: calc(var(--modal-spacing) / 2);

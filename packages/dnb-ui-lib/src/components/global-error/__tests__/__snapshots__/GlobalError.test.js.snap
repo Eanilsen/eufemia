@@ -283,6 +283,10 @@ exports[`GlobalError scss have to match snapshot 1`] = `
       box-shadow: none;
       color: inherit;
       border: none; }
+  .dnb-button[type='button'], .dnb-button[type='reset'], .dnb-button[type='submit'] {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none; }
   .dnb-button[disabled] {
     cursor: not-allowed; }
   .dnb-form-row--vertical .dnb-form-row__content > .dnb-button {
@@ -296,11 +300,6 @@ exports[`GlobalError scss have to match snapshot 1`] = `
 /* Firefox includes a hidden border which messes up button dimensions */
 button.dnb-button::-moz-focus-inner {
   border: none; }
-
-a.dnb-button[type='button'] {
-  appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none; }
 
 a.dnb-button .dnb-button__icon {
   transform: translateY(0); }
@@ -498,7 +497,7 @@ exports[`GlobalError snapshot have to match component snapshot 1`] = `
                   >
                     <path
                       clipRule="evenodd"
-                      d="M10.778 4.03a.75.75 0 10-1.06-1.06l-4.5 4.5a.75.75 0 000 1.06l4.5 4.5a.75.75 0 101.06-1.06L6.808 8l3.97-3.97z"
+                      d="M10.78 4.03a.75.75 0 10-1.06-1.06l-4.5 4.5a.75.75 0 000 1.06l4.5 4.5a.75.75 0 101.06-1.06L6.81 8l3.97-3.97z"
                       fill="#000"
                       fillRule="evenodd"
                     />

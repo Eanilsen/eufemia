@@ -24,15 +24,98 @@ whatInput.specificKeys([9])
 defineIsTouch()
 defineNavigator()
 
+export const isMac = () =>
+  typeof navigator !== 'undefined' &&
+  navigator.platform.match(new RegExp(PLATFORM_MAC)) !== null
+
 /**
  * Check if device is touch device or not
  */
 
+let IS_TOUCH_DEVICE = undefined
 export function isTouchDevice() {
-  if (typeof isTouchDevice.result !== 'undefined') {
-    return isTouchDevice.result
+  if (typeof IS_TOUCH_DEVICE !== 'undefined') {
+    if (typeof window !== 'undefined') {
+      window.IS_TOUCH_DEVICE = IS_TOUCH_DEVICE
+    }
+    return IS_TOUCH_DEVICE
   }
-  let result = undefined
+
+  return IS_TOUCH_DEVICE
+}
+
+/**
+ * Detects if device supports touches
+ *
+ * @param  {[type]} [interactive=true}] [Makes it posible that the state changes interactive]
+ * @return {[type]} [void]
+ */
+export function defineIsTouch({ interactive = true } = {}) {
+  const handleDefineTouch = () => {
+    if (typeof document === 'undefined' || typeof window === 'undefined') {
+      return
+    }
+
+    // to give it a change to have isTouch from the very beginning
+    if (unsafeIsTouchDeviceCheck()) {
+      document.documentElement.setAttribute('data-is-touch', true)
+      IS_TOUCH_DEVICE = true
+    }
+
+    window.addEventListener(
+      'touchstart',
+      function onTouch() {
+        try {
+          if (IS_TOUCH_DEVICE !== true) {
+            document.documentElement.setAttribute('data-is-touch', true)
+          }
+          IS_TOUCH_DEVICE = true
+        } catch (e) {
+          console.warn('Could not apply "touch attribute"', e)
+        }
+        if (!interactive) {
+          window.removeEventListener('touchstart', onTouch, false)
+        }
+      },
+      false
+    )
+
+    window.addEventListener(
+      'mouseover',
+      function onHover() {
+        try {
+          if (IS_TOUCH_DEVICE === true) {
+            document.documentElement.removeAttribute('data-is-touch')
+          }
+          IS_TOUCH_DEVICE = false
+        } catch (e) {
+          console.warn('Could not apply "touch attribute"', e)
+        }
+        if (!interactive) {
+          window.removeEventListener('mouseover', onHover, false)
+        }
+      },
+      false
+    )
+
+    document.removeEventListener('DOMContentLoaded', handleDefineTouch)
+  }
+
+  if (
+    typeof document !== 'undefined' &&
+    document.readyState === 'loading'
+  ) {
+    document.addEventListener('DOMContentLoaded', handleDefineTouch)
+  } else {
+    handleDefineTouch()
+  }
+}
+
+function unsafeIsTouchDeviceCheck() {
+  if (typeof document === 'undefined' || typeof window === 'undefined') {
+    return false
+  }
+  let result = false
 
   try {
     if (window.PointerEvent && 'maxTouchPoints' in navigator) {
@@ -57,32 +140,7 @@ export function isTouchDevice() {
     result = false
   }
 
-  return (isTouchDevice.result = result)
-}
-
-export function defineIsTouch() {
-  const handleDefineTouch = () => {
-    if (typeof document === 'undefined' || typeof window === 'undefined')
-      return
-    try {
-      if (isTouchDevice()) {
-        document.documentElement.setAttribute('data-is-touch', true)
-      }
-    } catch (e) {
-      console.warn('Could not apply "touch attribute"', e)
-    }
-
-    document.removeEventListener('DOMContentLoaded', handleDefineTouch)
-  }
-
-  if (
-    typeof document !== 'undefined' &&
-    document.readyState === 'loading'
-  ) {
-    document.addEventListener('DOMContentLoaded', handleDefineTouch)
-  } else {
-    handleDefineTouch()
-  }
+  return result
 }
 
 export function defineNavigator() {
@@ -494,7 +552,7 @@ export class DetectOutsideClickClass {
   }
 
   overflowIsScrollable = elem => {
-    const style = getComputedStyle(elem)
+    const style = window.getComputedStyle(elem)
     return /scroll|auto/i.test(
       style.overflow + (style.overflowX || '') + (style.overflowY || '')
     )
@@ -549,4 +607,25 @@ export const matchAll = (string, regex) => {
     matches.push(match)
   }
   return matches
+}
+
+/**
+ * [getPreviousSibling traverses down the DOM tree until it finds the wanted element]
+ * @param  {[string]} className [CSS class]
+ * @param  {[HTMLElement]} elem      [starting HTMLElement]
+ * @return {[HTMLElement]}           [HTMLElement]
+ */
+export const getPreviousSibling = (className, elem) => {
+  try {
+    const contains = elem => elem && elem.classList.contains(className)
+
+    if (contains(elem)) {
+      return elem
+    }
+
+    while ((elem = elem && elem.parentElement) && !contains(elem));
+  } catch (e) {
+    console.warn(e)
+  }
+  return elem
 }
